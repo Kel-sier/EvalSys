@@ -1,13 +1,25 @@
-public class Subject {
+public class Subject extends Curriculum{
+    private int studentYearLevel;
     private int semNum;
     private String subjectCode;
     private String subjectName;
     private int units;
     public Subject(int semNum, String subjectCode, String subjectName, int units){
-        this.semNum = semNum;
+        super();
+        this.semNum = getStudentSemester();
         this.subjectCode = subjectCode;
         this.subjectName = subjectName;
         this.units = units;
+        this.studentYearLevel = getStudentYearLevel();
+
+        switch (studentYearLevel){
+            case 1:
+                if(semNum == 1){
+                    System.out.println("These are the recommended subjects you should take");
+
+                }
+                System.out.println("");
+        }
     }
 
     public void setSemNum(int semNum){
