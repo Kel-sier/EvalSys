@@ -3,13 +3,15 @@ public class Student {
     private int studentID;
     private String studentBday;
     private String studentAddress = "";
+    private String stud;
 
-    public Student(String studentName, int studentID, String studentBday, String studentAddress){
+    public Student(String studentName, int studentID, String studentBday, String studentAddress, String stud){
 
         this.studentName = studentName;
         this.studentID = studentID;
         this.studentBday = studentBday;
         this.studentAddress = studentAddress;
+        this.stud = stud;
     }
 
     public void setStudentName(String studentName){
@@ -42,6 +44,14 @@ public class Student {
 
     public String getStudentAddress(){
         return studentAddress;
+    }
+
+    public void setStud(String stud){
+        this.stud = stud;
+    }
+
+    public String getStud(){
+        return stud;
     }
 
     public void displayStudentInfo(){
