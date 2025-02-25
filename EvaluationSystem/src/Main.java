@@ -11,6 +11,7 @@ public class Main {
         int schoolChoice = 0;
         String schoolName = "";
         String schoolAddress = "";
+        String stud;
         String studentCourseProgram = "";
         int studentYearLevel = 0;
         int studentSemester = 0;
@@ -38,7 +39,10 @@ public class Main {
             System.out.print("Address: ");
             studentAddress = sc.nextLine();
 
-            Student student = new Student(studentName, studentID, studentBday, studentAddress);
+            System.out.println("Are you a new student? Y/N");
+            stud =  sc.nextLine().toUpperCase();
+
+            Student student = new Student(studentName, studentID, studentBday, studentAddress, stud);
 
             boolean validSchoolChoice = false;
             while (!validSchoolChoice) {
@@ -74,27 +78,36 @@ public class Main {
 
             School school = new School(schoolChoice, schoolName, schoolAddress);
 
-            System.out.print("Program: ");
+            System.out.print("Course: ");
             studentCourseProgram = sc.nextLine();
             Program program = new Program(studentCourseProgram);
 
-            System.out.print("Year Level: ");
-            while (!sc.hasNextInt()) {
-                System.out.println("Invalid Year Level. Please enter a valid number.");
-                sc.next();
-            }
-            studentYearLevel = sc.nextInt();
+            if(stud == "N"){
+                System.out.print("Year Level: ");
+                while (!sc.hasNextInt()) {
+                    System.out.println("Invalid Year Level. Please enter a valid number.");
+                    sc.next();
+                }
+                studentYearLevel = sc.nextInt();
 
-            System.out.print("Semester: ");
-            while (!sc.hasNextInt()) {
-                System.out.println("Invalid Semester. Please enter a valid number.");
-                sc.next();
-            }
-            studentSemester = sc.nextInt();
-            sc.nextLine();
+                System.out.print("Semester: ");
+                while (!sc.hasNextInt()) {
+                    System.out.println("Invalid Semester. Please enter a valid number.");
+                    sc.next();
+                }
+                studentSemester = sc.nextInt();
+                sc.nextLine();
 
-            System.out.print("School Year: ");
-            studentSchoolYear = sc.nextLine();
+                System.out.print("School Year: ");
+                studentSchoolYear = sc.nextLine();
+            }
+            else{
+
+                studentYearLevel = 1;
+                studentSemester = 1;
+                System.out.println("Please enter the school year: ");
+                studentSchoolYear = sc.nextLine();
+            }
 
             Curriculum curriculum = new Curriculum(studentYearLevel, studentSemester, studentSchoolYear);
 
@@ -102,6 +115,7 @@ public class Main {
             program.displayCourseInfo();
             curriculum.displayStudentCurriculum();
             school.displaySchoolInfo();
+
 
             System.out.println("\nDo you want to enter the information again? (yes/no)");
             String userChoice = sc.nextLine().toLowerCase();
